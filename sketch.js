@@ -2,14 +2,13 @@ let canvas;
 let myImg;
 let myFont;
 
-let download = false;
 function downloadCertificate() {
-  download = true;
+  if (canvas) saveCanvas(canvas, "Certificate Random Person");
 }
 
 function preload() {
   myFont = loadFont("sacramento.ttf");
-  myImg = loadImage("https://i.picsum.photos/id/563/200/200.jpg");
+  myImg = loadImage("https://picsum.photos/id/563/200/200.jpg");
 }
 
 function setup() {
@@ -33,14 +32,5 @@ function setup() {
   textFont(myFont);
   text("Random person", width / 2, height / 2);
 
-  checkSave(saveCanvas);
   noLoop();
-}
-
-function checkSave(saveCanvas) {
-  if (download) {
-    saveCanvas(canvas, "Certificate Random Person");
-  } else {
-    setTimeout(() => checkSave(saveCanvas), 1000);
-  }
 }
